@@ -8,7 +8,7 @@ A simple and clean carhud script for any type of server.
 
 # Installation
 
-- [BCS Notify](https://forum.cfx.re/t/bcs-carhud/5061461)
+- [FiveM Forum](https://forum.cfx.re/t/bcs-carhud/5061461)
 
 - For any questions or issue join my discord: https://discord.gg/yMV5A9RBcw.
 
