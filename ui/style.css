@@ -1,0 +1,62 @@
+@font-face {
+    font-family: bankgothic;
+    src: url("./font/bankgothic.ttf");
+}
+
+body {
+    overflow: hidden;
+}
+
+.carhud-container {
+    display: none;
+    font-family: bankgothic;
+    position: absolute;
+    text-align: center;
+    font-size: 3.5rem;
+    bottom: .5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 6vh;
+    width: 7vw;
+    color: white;
+    animation: carhud-enter .5s;
+}
+
+.vel {
+    position: absolute;
+    text-align: center;
+    font-size: 3.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 0 0 1vh black;
+}
+
+.kmh {
+    position: absolute;
+    font-size: .8rem;
+    right: .5vh;
+    bottom: 1.2vh;
+    text-shadow: 0 0 1vh black;
+}
+
+.fuel {
+    display: none;
+    position: absolute;
+    text-align: center;
+    font-size: .9rem;
+    right: 9.8vh;
+    bottom: 1.3vh;
+    padding: .1vw .2vw 0 .2vw;
+    height: fit-content;
+    width: fit-content;
+    border-radius: .5vh;
+    background-color: orange;
+}
+
+@keyframes carhud-enter {
+    from {
+        bottom: -2vh;
+    }
+}
