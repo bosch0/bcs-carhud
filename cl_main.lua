@@ -3,10 +3,10 @@
 CreateThread(function ()
     while true do
         local player = PlayerPedId()
-		local vehicle = GetVehiclePedIsIn(player)
-        local fuel = math.floor(exports['LegacyFuel']:GetFuel(vehicle))
-        if not CarHUD.LegacyFuel then
-            fuel = 100
+	local vehicle = GetVehiclePedIsIn(player) 
+	local fuel = 100
+        if CarHUD.LegacyFuel then
+	    fuel = math.floor(exports['LegacyFuel']:GetFuel(vehicle))
         end
         if CarHUD.type == 'mp/h' then
             vel = math.floor(GetEntitySpeed(vehicle) * 2.236936)
