@@ -5,7 +5,7 @@ CreateThread(function ()
         local player = PlayerPedId()
 	local vehicle = GetVehiclePedIsIn(player) 
 	local fuel = 100
-	local fuelSystem = string.upper(Config.FuelSystem)
+	local fuelSystem = string.upper(CarHUD.FuelSystem)
 	if (fuelSystem == "LEGACYFUEL") then
 		local fuelLevel = exports['LegacyFuel']:GetFuel(vehicle)
 	elseif (fuelSystem == "NDFUEL") then
