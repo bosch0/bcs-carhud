@@ -1,6 +1,10 @@
 CarHUD = {}
 
-CarHUD.LegacyFuel = true -- true if you use LegacyFuel, false if not.
+-- FUEL SETTINGS --
+-- CarHUD.LegacyFuel = true -- true if you use LegacyFuel, false if not.
+
+CarHUD.FuelSystem = "legacyfuel" -- legacyfuel, ndfuel, soon more.
+
 
 CarHUD.type = 'km/h' -- mp/h or km/h
 
