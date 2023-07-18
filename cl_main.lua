@@ -8,17 +8,15 @@ CreateThread(function ()
 	local fuelSystem = string.upper(Config.FuelSystem)
 	if (fuelSystem == "LEGACYFUEL") then
 		local fuelLevel = exports['LegacyFuel']:GetFuel(vehicle)
-		fuel = math.floor(fuelLevel)
 	elseif (fuelSystem == "NDFUEL") then
 		local fuelLevel = exports['ND_Fuel']:GetFuel(vehicle) -- MUST ADD EXPORT IN NDFUEL SCRIPT
-		fuel = math.floor(fuelLevel)
 	elseif (fuelSystem == "DEFAULT") then
 		local fuelLevel = GetVehicleFuelLevel(vehicle)
-		fuel = math.floor(fuelLevel)
 	elseif (fuelSystem == "CUSTOM") then
 		-- Add Here the custom code
-		-- fuel = math.floor(CUSTOM CODE FOR GET FUEL)
+		-- local fuelLevel = (CUSTOM CODE FOR GET FUEL)
 	end
+	local fuel = math.floor(fuelLevel)
         if CarHUD.type == 'mp/h' then
             vel = math.floor(GetEntitySpeed(vehicle) * 2.236936)
         elseif CarHUD.type == 'km/h' then
