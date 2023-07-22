@@ -6,11 +6,11 @@ CreateThread(function ()
 	local vehicle = GetVehiclePedIsIn(player) 
 	local fuelSystem = string.upper(CarHUD.FuelSystem)
 	if (fuelSystem == "LEGACYFUEL") then
-		local fuelLevel = exports['LegacyFuel']:GetFuel(vehicle)
+		fuelLevel = exports['LegacyFuel']:GetFuel(vehicle)
 	elseif (fuelSystem == "NDFUEL") then
-		local fuelLevel = exports['ND_Fuel']:GetFuel(vehicle) -- MUST ADD EXPORT IN NDFUEL SCRIPT
+		fuelLevel = exports['ND_Fuel']:GetFuel(vehicle) -- MUST ADD EXPORT IN NDFUEL SCRIPT
 	elseif (fuelSystem == "DEFAULT") then
-		local fuelLevel = GetVehicleFuelLevel(vehicle)
+		fuelLevel = GetVehicleFuelLevel(vehicle)
 	elseif (fuelSystem == "CUSTOM") then
 		-- Add Here the custom code
 		-- local fuelLevel = (CUSTOM CODE FOR GET FUEL)
