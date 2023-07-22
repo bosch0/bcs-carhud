@@ -4,7 +4,6 @@ CreateThread(function ()
     while true do
         local player = PlayerPedId()
 	local vehicle = GetVehiclePedIsIn(player) 
-	local fuel = 100
 	local fuelSystem = string.upper(CarHUD.FuelSystem)
 	if (fuelSystem == "LEGACYFUEL") then
 		local fuelLevel = exports['LegacyFuel']:GetFuel(vehicle)
