@@ -1,47 +1,34 @@
-local fuelSystem = string.upper(CarHUD.FuelSystem)
+local client = {
+    loaded = false,
+    ped = PlayerPedId(),
+}
 
--- @main
+local function formatSpeed(speed)
+    if (not speed) then return 0 end
+    return CarHUD.type == 'km/h' and math.floor(speed * 3.6) or math.floor(speed * 2.236936)
+end
 
-CreateThread(function ()
-    while true do
-        local player = PlayerPedId()
-        local vehicle = GetVehiclePedIsIn(player)
-        if not IsPauseMenuActive() and IsPedInAnyVehicle(player) and not IsThisModelABicycle(vehicle) then
-            sleep = 50
-            
-            if CarHUD.type == 'mp/h' then
-                vel = math.floor(GetEntitySpeed(vehicle) * 2.236936)
-            elseif CarHUD.type == 'km/h' then
-                vel = math.floor(GetEntitySpeed(vehicle) * 3.6)
-            else
-                print('^3[BCS-carhud]^0 check CarHUD.type in Config.lua')
-                vel = nil
-            end
-            if (fuelSystem == "LEGACYFUEL") then
-                fuelLevel = exports['LegacyFuel']:GetFuel(vehicle)
-            elseif (fuelSystem == "NDFUEL") then
-                fuelLevel = exports['ND_Fuel']:GetFuel(vehicle) -- MUST ADD EXPORT IN NDFUEL SCRIPT
-            elseif (fuelSystem == "DEFAULT") then
-                fuelLevel = GetVehicleFuelLevel(vehicle)
-            elseif (fuelSystem == "CUSTOM") then
-                -- Add Here the custom code
-                -- local fuelLevel = (CUSTOM CODE FOR GET FUEL)
-            end
-            local fuel = math.floor(fuelLevel)
+local function getVehicleFuel(vehicle)
+    return GetResourceState('LegacyFuel'):match('start') and exports.LegacyFuel:GetFuel(vehicle) or
+        GetVehicleFuelLevel(vehicle)
+end
 
+local function loadSpeedometer()
+    if (client.loaded) then return end
+    client.loaded = true
+    CreateThread(function()
+        while (client.loaded) do
             SendNUIMessage({
-                toggle = true,
-                vel = vel,
-                fuel = fuel,
-                type = CarHUD.type,
-                config = CarHUD.fuel
+                type = 'update',
+                speed = IsPedInAnyVehicle(client.ped, false) and
+                    formatSpeed(GetEntitySpeed(GetVehiclePedIsIn(client.ped), false)) or 0,
+                fuel = IsPedInAnyVehicle(client.ped, false) and getVehicleFuel(GetVehiclePedIsIn(client.ped), false) or 0,
+                vehicle = IsPedInAnyVehicle(client.ped, false) and not IsPauseMenuActive(),
+                currentType = CarHUD.type,
             })
-        else
-            sleep = 1000
-            SendNUIMessage({
-                toggle = false
-            })
+            Wait(IsPedInAnyVehicle(client.ped, false) and 150 or 1000)
         end
-        Wait(sleep)
-    end
-end)
+    end)
+end
+
+RegisterNetEvent('onClientResourceStart', loadSpeedometer)

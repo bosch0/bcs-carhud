@@ -8,7 +8,6 @@ body {
 }
 
 .carhud-container {
-    display: none;
     font-family: bankgothic;
     position: absolute;
     text-align: center;
@@ -42,7 +41,6 @@ body {
 }
 
 .fuel {
-    display: none;
     position: absolute;
     text-align: center;
     font-size: .9rem;
